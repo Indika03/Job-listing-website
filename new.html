@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommerce Website</title>
+    <style type="text/css" media="all">
+    	/* Reset default styles for body and navigation list */
+body{
+    margin: 0;
+    padding: 0;
+  
+}
+
+/* Style the navigation menu */
+nav {
+    background-color: #333;
+    text-align: right;
+    padding: 10px;
+   
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: right;
+   justify-content: right;
+}
+
+nav li {
+    margin-left: 15px;
+    
+}
+nav a {
+	text-decoration: none;
+	color: #fff;
+}
+
+
+.nav-btn {
+  
+  padding: 6px 20px !important;
+  text-transform: uppercase;
+}
+
+.nav-btn:hover {
+	background: #39e4da;
+    color: #49e4fa;
+}
+
+.burger-icon {
+    display: none;
+    position: absolute;
+    right: 15;
+    color: #fff;
+    cursor: pointer;
+    font-size: 24px;
+    
+}
+
+
+/* Style the features section */
+.features {
+    padding: 20px;
+    align-items: right;
+   justify-content: center;
+   background-color:rgb(249,249,255);
+   
+}
+.features .src, .features{
+	display: flex;
+	gap: 1rem;
+}
+select , .toggle{
+    padding: 10px 20px;
+    
+    border: none;
+    outline: none;
+    
+}
+.bg-white{
+	background-color: #fff;
+}
+.search{
+    padding: 10px 20px;
+    background-color: #00dfab;
+    color: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+
+/* Style the job details table */
+.job-details {
+    padding: 20px;
+    display: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+
+
+
+/* Style the product cards section */
+.card-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.product-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    
+    text-align: left;
+}
+
+.product-card:hover{
+   
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    background: #eef;
+    
+}
+
+.product-card h3 {
+    margin-top: 10px;
+   /* font-size: 16px;*/
+}
+
+.product-card p {
+    color: #666;
+   /* font-size: 14px; */
+}
+
+.product-card .d-flex .apply {
+   
+    background-color: #fff;
+    outline: none;
+    border: 1px solid #555;
+    border-radius: 5px;
+    padding: 1px 15px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.product-card button:hover {
+    background-color: #508bf9;
+    color: white;
+}
+.d-flex{
+	display: flex;
+	justify-content: space-between;
+	
+}
+
+
+
+/* reg form styling */
+ .registration-form{
+ 	width: 100%;
+ }
+
+.form-group {
+    margin-bottom: 15px;
+  
+}
+.form-control{
+	display: block;
+	 width: 100%;
+    padding: 5px;
+}
+
+label {
+   
+}
+
+input, #countryList {
+    width: 100%;
+    padding: 5px;
+}
+
+.error, .error-r {
+    color: red;
+}
+
+button[type=submit] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+/* Add your existing CSS styles here */
+
+/* Style the popup */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup-content {
+    width: 50%;
+    margin: 10% 25%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.close {
+    
+    float: right;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Add more popup styling if needed */
+
+/* Small screens */
+@media screen and (max-width: 768px) {
+nav{
+	height: 30px;
+}
+.nav-btn {
+  background: none;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+    .burger-icon {
+        display: block;
+        
+    }
+
+    nav .menu {
+        display: none;
+        flex-direction: column;
+        align-items: left;
+      
+        background-color: #333;
+       position: absolute;
+       top: 35;
+       left: 0;
+       margin: 0;
+      padding: 0;
+       width: 100%;
+    }
+
+    nav .menu  li {
+        margin: 10px 0;
+    }
+    nav li {
+    margin-left:0;
+    width: 50%;
+    
+}
+    
+    
+    .features {
+	display: block;
+
+    }
+    .features .src{
+    	margin-bottom: 10px;
+    	align-items: center;
+    	justify-content: center;
+}
+    
+    .card-details {
+    display: block;
+    
+}
+.product-card{
+	margin-bottom: 20px;
+}
+    
+}
+
+
+    </style>
+</head>
+<body>
+    <nav>
+    	<span class="burger-icon">&#9776;</span>
+        <ul class="menu">
+           
+            <li class="nav-btn" id="register-btn"><a href="#">Register</a></li>
+            <li class="nav-btn" id="login-btn"><a href="#">Login</a></li>
+        </ul>
+    </nav>
+
+    <div class="features">
+        <!-- Add search and filter elements here -->
+        <div class="src">
+        	
+        
+        <input type="text" id="search">
+        <button class="search">Search</button>
+       </div>
+       <div class="src">
+        	
+        
+        <select class="bg-white" id="filter">
+            <!-- Add filter options here -->
+            <option>
+            	Filter
+            </option>
+        </select>
+       
+            <button class="toggle bg-white" id="btncards">Card</button>
+           <button class="toggle" id="btntable">Table</button>
+         </div>
+    </div>
+
+	<!-- card layout -->
+    <div class="card-details" id="cardlayout">
+        <!-- Add card layout here -->
+        <div class="product-card">
+           
+            <h3>Product 1</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+				<div class="d-flex">
+						<p> Location </p>
+									<p>Salary</p>
+						</div>
+						<div class="d-flex">
+										 <button class="apply">Apply</button>
+                        <p>					deadline
+				</p>
+									</div>
+
+        </div>
+
+        <div class="product-card">
+           
+            <h3>Product 2</h3>
+            <p>Nulla nec tellus nec nunc laoreet iaculis nec a velit.</p>
+            	<div class="d-flex">
+						<p> Location </p>
+									<p>Salary</p>
+						</div>
+						<div class="d-flex">
+										 <button class="apply">Apply</button>
+                        <p>					deadline
+				</p>
+									</div>
+
+        </div>
+
+        <div class="product-card">
+          
+            <h3>Product 3</h3>
+            <p>Vivamus nec elit ut felis maximus accumsan sit amet nec ex.</p>
+           	<div class="d-flex">
+						<p> Location </p>
+									<p>Salary</p>
+						</div>
+						<div class="d-flex">
+										 <button class="apply">Apply</button>
+                        <p>					deadline
+				</p>
+									</div>
+
+        </div>
+        <!-- row 2 -->
+           <div class="product-card">
+           
+            <h3>Product 1</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+				<div class="d-flex">
+						<p> Location </p>
+									<p>Salary</p>
+						</div>
+						<div class="d-flex">
+										 <button class="apply">Apply</button>
+                        <p>					deadline
+				</p>
+									</div>
+
+        </div>
+
+        <div class="product-card">
+          
+            <h3>Product 2</h3>
+            <p>Nulla nec tellus nec nunc laoreet iaculis nec a velit.</p>
+            	<div class="d-flex">
+						<p> Location </p>
+									<p>Salary</p>
+						</div>
+						<div class="d-flex">
+										 <button class="apply">Apply</button>
+                        <p>					deadline
+				</p>
+									</div>
+
+        </div>
+
+        <div class="product-card">
+          
+            <h3>Product 3</h3>
+            <p>Vivamus nec elit ut felis maximus accumsan sit amet nec ex.</p>
+           	<div class="d-flex">
+						<p> Location </p>
+									<p>Salary</p>
+						</div>
+						<div class="d-flex">
+										 <button class="apply">Apply</button>
+                        <p>					deadline
+				</p>
+									</div>
+
+        </div>
+       
+    </div>
+
+	<!-- table layout -->
+    <div class="job-details" id="tablelayout">
+        <!-- Add table layout here -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Job Title</th>
+                    <th>Location</th><th>Description</th>
+                    <th>Salary</th>
+                    <th>Deadline</th>
+                    <!-- Add more table headers here -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Job 1</td>
+                    <td>Location 1</td>
+                    <td>Description.....  ...1
+                    dbfhd dh£ dhr rhd dj djjd </td>
+                    <td>LKR(20,000-50,000) </td>
+                    <td>24/108/2023</td>
+                    <!-- Add more table data here -->
+                </tr>
+                <!-- Add more table rows here -->
+            </tbody>
+        </table>
+    </div>
+    
+    <!-- register modal -->
+    <div class="popup" id="registration-popup">
+        <div class="popup-content">
+            <span class="close" id="close-btn">&times;</span>
+            <h2>Register</h2>
+            	<p class="error-r">
+				* Required.
+							</p>
+							
+    <form id="registration-form">
+        <div class="form-group">
+            <label>First name</label>
+            <span class="error-r"> * </span>
+				
+            <input type="text" id="firstname" name="firstname" class="form-control"required>
+            <span class="error" id="firstname-error"></span>
+        </div>
+        
+        <div class="form-group">
+            <label>Last name</label>
+            <span class="error-r"> * </span>
+				
+            <input type="text" id="lastname" name="lastname" class="form-control"required>
+            <span class="error" id="lastname-error"></span>
+        </div>
+        
+        <div class="form-group">
+            <label>Country</label>
+            <span class="error-r"> * </span>
+									<select class="form-control" id="countryList">
+									<option value="">
+
+							select a country		</option>
+								</select>
+           
+            <span class="error" id="country-error"></span>
+        </div>
+        
+         <div class="form-group">
+            <label>City (Optional)</label>
+            <input type="text" id="city" name="city" class="form-control">
+
+        </div>
+        
+        <div class="form-group">
+            <label>Postal Code(Optional)</label>
+            <input type="text" id="pcode" name="pcode" class="form-control">
+
+        </div>
+        
+        
+
+        <div class="form-group">
+            <label>Email</label>
+            <span class="error-r"> * </span>
+            <input type="email" id="email" name="email" required>
+            <span class="error" id="email-error"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <span class="error-r"> * </span>
+                        <input type="password" id="password" name="password" required>
+            <span class="error" id="password-error"></span>
+        </div>
+
+        <button type="submit">Register</button>
+    </form>
+    
+    
+    
+    
+           
+        </div>
+    </div>
+    
+    <!-- login modal -->
+    <div class="popup" id="login-popup">
+        <div class="popup-content">
+            <span class="close" id="close-lbtn">&times;</span>
+            <h2>Login</h2>
+            
+    <form id="login-form">
+        
+        <div class="form-group">
+            <label>Email</label>
+          
+            <input type="email" id="lemail" name="lemail" required>
+            <span class="error" id="lemail-error"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+           
+                        <input type="password" id="lpassword" name="lpassword" required>
+            <span class="error" id="lpassword-error"></span>
+        </div>
+
+        <button type="submit">Login</button>
+    </form>
+    
+    
+    
+    
+           
+        </div>
+    </div>
+    
+    <!-- forms validate -->
+    
+
+  <script type="text/javascript" charset="utf-8">
+const form = document.getElementById('registration-form');
+
+const firstnameInput = document.getElementById('firstname');
+const lastnameInput = document.getElementById('lastname');
+const emailInput = document.getElementById('email');
+const passwordInput = document.getElementById('password');
+const countryInput = document.getElementById('countryList');
+const cityInput = document.getElementById('city');
+const pCodeInput = document.getElementById('pcode');
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (regvalidateForm()) {
+        alert('Registration successful!');
+        		fn = firstnameInput.value;
+        		ln = lastnameInput.value;
+        		ctr=countryInput.value;
+        		city = cityInput.value;
+        		pcode=pCodeInput.value;
+        		em=emailInput.value;
+        		pas=passwordInput.value;
+        		
+				const userData = {
+					fn,
+					ln,
+					ctr,
+					city,
+					pcode,
+					em,
+					pas,
+				};
+
+				console.log(userData);
+
+				registerUser(userData).then(response => {
+					// Handle the response (e.g., show success or error messages)
+					console.log('data submited:', response);
+				
+
+				});
+			
+        form.reset();
+        	document.getElementById("registration-popup").style.display = "none";
+			document.getElementById("login-popup").style.display = "block";
+    }
+});
+
+const loginform = document.getElementById('login-form');
+const lemail = document.getElementById('lemail');
+const lpassword = document.getElementById('lpassword');
+
+loginform.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (logvalidateForm()) {
+        		eml = lemail.value;
+        		paw = lpassword.value;
+        		
+				//log in a registered user
+				const userCredentials = {
+					eml,
+					paw,
+				};
+				console.log(userCredentials);
+
+
+				loginUser(userCredentials).then(response => {
+					const usertoken = response.token;
+
+
+					// Storing token in the sessionStorage
+					sessionStorage.setItem("userToken", usertoken);
+
+					// Retrieving the user token from sessionStorage
+					const storedToken = sessionStorage.getItem("userToken");
+
+					// Check if the token is available
+					if (storedToken) {
+						// Perform actions with the user token, e.g., send it with API requests, etc.
+						console.log("User token:", storedToken);
+					} else {
+						// Handle the case when the user is not logged in or token is not available
+						console.log("User not logged in.");
+					}
+
+					console.log('Login successful:', response);
+					alert("Login successful ");
+				});
+				event.target.reset();
+        form.reset();
+        document.getElementById("login-popup").style.display = "none";
+    }
+});
+
+
+function regvalidateForm() {
+    let isValid = true;
+
+    // Reset previous errors
+    clearErrors();
+
+    // Validate username (must not be empty)
+    if (firstnameInput.value.trim() === '') {
+        displayError(firstnameInput, 'Firstname is required.');
+        isValid = false;
+    }
+    if (lastnameInput.value.trim() === '') {
+        displayError(lastnameInput, 'Lastname is required.');
+        isValid = false;
+    }
+    if (countryInput.value.trim() === '') {
+       
+       document.getElementById('country-error').textContent= "select a country ";
+       isValid = false;
+    }
+
+    // Validate email (must not be empty and must be a valid email format)
+    const emailValue = emailInput.value.trim();
+    if (emailValue === '') {
+        displayError(emailInput, 'Email is required.');
+        isValid = false;
+    } else if (!isValidEmail(emailValue)) {
+        displayError(emailInput, 'Invalid email format.');
+        isValid = false;
+    }
+
+    // Validate password (must not be empty and must have at least 6 characters)
+    const passwordValue = passwordInput.value.trim();
+    if (passwordValue === '') {
+        displayError(passwordInput, 'Password is required.');
+        isValid = false;
+    } else if (passwordValue.length < 6) {
+        displayError(passwordInput, 'Password must have at least 6 characters.');
+        isValid = false;
+    }
+    return isValid;
+}
+
+function logvalidateForm() {
+    let isValid = true;
+
+    // Reset previous errors
+    clearErrors();
+
+
+    // Validate email (must not be empty and must be a valid email format)
+    const emailValue = lemail.value.trim();
+    if (emailValue === '') {
+        displayError(lemail, 'Email is required.');
+        isValid = false;
+    } else if (!isValidEmail(emailValue)) {
+        displayError(lemail, 'Invalid email format.');
+        isValid = false;
+    }
+
+    // Validate password (must not be empty and must have at least 6 characters)
+    const passwordValue = lpassword.value.trim();
+    if (passwordValue === '') {
+        displayError(lpassword, 'Password is required.');
+        isValid = false;
+    } else if (passwordValue.length < 6) {
+        displayError(lpassword, 'Password must have at least 6 characters.');
+        isValid = false;
+    }
+    return isValid;
+}
+
+function isValidEmail(email) {
+    // Simple email format validation using regular expression
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+}
+
+function displayError(inputElement, message) {
+    const errorElement = document.getElementById(`${inputElement.id}-error`);
+    errorElement.textContent = message;
+    inputElement.classList.add('error-border');
+}
+
+function clearErrors() {
+    const errorElements = document.querySelectorAll('.error');
+    errorElements.forEach((errorElement) => errorElement.textContent = '');
+
+    const inputElements = document.querySelectorAll('input');
+    inputElements.forEach((inputElement) => inputElement.classList.remove('error-border'));
+}
+
+  </script>
+  
+  
+  <!-- handle button  -->
+  <script type="text/javascript" charset="utf-8">
+  	
+const registerButton = document.getElementById('register-btn');
+const loginButton = document.getElementById('login-btn');
+const registrationPopup = document.getElementById('registration-popup');
+const loginPopup = document.getElementById('login-popup');
+const closeButton = document.getElementById('close-btn');
+const closelButton = document.getElementById('close-lbtn');
+
+
+
+const tableButton = document.getElementById("btntable");
+const tableLayout = document.getElementById("tablelayout");
+const cardButton = document.getElementById("btncards");
+const cardLayout = document.getElementById("cardlayout");
+		
+		
+		
+		
+
+registerButton.addEventListener('click', () => {
+    registrationPopup.style.display = 'block';
+});
+
+loginButton.addEventListener('click', () => {
+    loginPopup.style.display = 'block';
+});
+
+closeButton.addEventListener('click', () => {
+    registrationPopup.style.display = 'none';
+    
+});
+closelButton.addEventListener('click', () => {
+    loginPopup.style.display = 'none';
+});
+tableButton.addEventListener("click", () => {
+
+			tableLayout.style.display = "block";
+			cardLayout.style.display = "none";
+			tableButton.classList.add("bg-white");
+  			cardButton.classList.remove("bg-white");
+		
+		
+
+});
+cardButton.addEventListener("click", () => {
+			
+			tableLayout.style.display = "none";
+		//	cardLayout.style.display = "grid";
+			tableButton.classList.remove("bg-white");
+  			cardButton.classList.add("bg-white");
+		if (window.innerWidth > 768) {
+        cardLayout.style.display='grid';
+		
+}else{
+	 cardLayout.style.display='block';
+}
+});
+
+
+  
+  </script>
+  
+  <!-- responsive menu -->
+   <script >
+    // JavaScript to toggle the menu on smaller screens
+
+const burgerIcon = document.querySelector('.burger-icon');
+const menu = document.querySelector('.menu');
+
+burgerIcon.addEventListener('click', () => {
+    menu.style.display=
+    	menu.style.display === "block" ? "none": "block";
+   
+
+
+// Event listener to hide the menu when clicking outside of it
+document.addEventListener('click', (event) => {
+    const isClickInsideMenu = menu.contains(event.target);
+    const isClickOnBurgerIcon = burgerIcon.contains(event.target);
+    
+    if (!isClickInsideMenu && !isClickOnBurgerIcon) {
+        menu.style.display="none"
+    }
+});
+
+    
+    
+});
+
+
+
+
+    </script>
+  
+  <!--api -->
+  <script>
+  		// API
+		//**********//
+		// Function to fetch the list of countries from the API
+		async function fetchCountryList() {
+			try {
+				//	const response = await fetch('https://ceylonscrown.com/trep/GetCountryList');
+				const response = await fetch('/storage/emulated/0/htdocs/trep/GetCountryList.php');
+				const data = await response.json();
+				return data.data; // Extract the 'data' array from the API response
+			} catch (error) {
+				console.error('Error fetching country list:', error);
+				return [];
+			}
+		}
+		//***********//
+		//*********//
+		//fetch country list
+		async function displayCountryList() {
+			//	displayCountryList().then((countries) => {
+			const countryList = await fetchCountryList();
+			const countryListContainer = document.getElementById('countryList');
+
+			countryList.forEach(countryObj => {
+				const country = countryObj.country;
+				if (country) {
+					const listItem = document.createElement('option');
+					listItem.textContent = country;
+					countryListContainer.appendChild(listItem);
+				}
+			});
+		}
+		//***********//
+		//**********//
+		// Function to register a new user
+		async function registerUser(userData) {
+			const response = await fetch("/storage/emulated/0/htdocs/trep/Register.php", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(userData),
+			});
+
+			const data = await response.json();
+			return data.data;
+		}
+		//******//
+
+		//**********//
+		// Function to log in a registered user
+		async function loginUser(userCredentials) {
+			const response = await fetch("https://ceylonscrown.com/trep/Login", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(userCredentials),
+			});
+
+			const data = await response.json();
+			return data;
+		}
+		//******//
+	document.addEventListener('DOMContentLoaded', displayCountryList);
+  </script>
+</body>
+</html>
